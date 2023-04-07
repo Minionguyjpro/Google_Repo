@@ -1,0 +1,16 @@
+name: Test Docker Image
+
+# This workflow tests the created Docker image.
+
+on:
+  workflow_run:
+    workflows: ["Docker"]
+    types:
+      - completed
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: minionguyjpro/google_repo
+    steps:
+      - name: Run repo help command
+        run: repo help
