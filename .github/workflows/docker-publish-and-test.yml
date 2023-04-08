@@ -115,7 +115,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
   test:
-   needs: build
+    needs: build
     runs-on: ubuntu-latest
     container: minionguyjpro/google_repo
     steps:
