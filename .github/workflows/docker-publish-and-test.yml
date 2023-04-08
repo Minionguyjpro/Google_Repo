@@ -117,7 +117,7 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    container: minionguyjpro/google_repo
+    container: minionguyjpro/google_repo:main
     steps:
       - name: Run repo help command
         run: repo help
