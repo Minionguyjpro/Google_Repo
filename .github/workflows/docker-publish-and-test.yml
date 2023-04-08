@@ -114,3 +114,11 @@ jobs:
           labels: ${{ steps.meta_github.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+  test:
+   needs: build
+    runs-on: ubuntu-latest
+    container: minionguyjpro/google_repo
+    steps:
+      - name: Run repo help command
+        run: repo help
+
