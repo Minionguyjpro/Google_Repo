@@ -101,6 +101,21 @@ jobs:
           labels: ${{ steps.meta_docker.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+        if:  ${{ github.event_name != 'release' }}
+          
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image on release (Docker registry)
+        id: build-and-push_docker_release
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta_docker.outputs.tags }}
+          labels: ${{ steps.meta_docker.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+        if: ${{ github.event_name == 'release' }}
           
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -114,6 +129,21 @@ jobs:
           labels: ${{ steps.meta_github.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+        if: ${{ github.event_name != 'release' }}
+      
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image on release (GitHub registry)
+        id: build-and-push_release
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta_github.outputs.tags }}
+          labels: ${{ steps.meta_github.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+        if: ${{ github.event_name == 'release' }}
   test:
     needs: build
     runs-on: ubuntu-latest
