@@ -1,5 +1,5 @@
 # Google_Repo
-Sets up a Google Repo environment using a container, including Google's repo.
+Sets up a Google Repo environment using a container, including Google's Repo.
 # Instructions
 1. Make sure you have Docker installed.
    * Install Docker on your Linux distribution by running ``sudo apt-get install docker`` from the terminal.
