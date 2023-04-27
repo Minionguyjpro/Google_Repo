@@ -8,5 +8,6 @@ RUN apt-get install git -y
 RUN apt-get install python3 -y
 RUN apt-get install python-is-python3 -y
 RUN apt-get install repo -y
+RUN cp /.repo/repo/repo /usr/bin/repo
 # Sets the entrypoint to Bash; the default terminal for most Linux distributions
 ENTRYPOINT ["/bin/bash"]
